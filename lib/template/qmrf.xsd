@@ -1,0 +1,2018 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- QMRF DTD -->
+<!-- DOCTYPE QMRF SYSTEM "qmrf.dtd" -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="QMRF">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="QMRF_chapters"/>
+        <xs:element ref="Catalogs"/>
+      </xs:sequence>
+      <xs:attribute name="schema_version" default="1.0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="version" default="1.3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1.3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="(Q)SAR Model Reporting Format">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="(Q)SAR Model Reporting Format"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="author" default="Joint Research Centre, European Commission">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Joint Research Centre, European Commission"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="date" default="July 2007">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="July 2007"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="contact" default="Joint Research Centre, European Commission">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Joint Research Centre, European Commission"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="email" default="JRC-IHCP-COMPUTOX@ec.europa.eu">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="JRC-IHCP-COMPUTOX@ec.europa.eu"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="url" default="http://ihcp.jrc.ec.europa.eu/">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="http://ihcp.jrc.ec.europa.eu/"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QMRF_chapters">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="QSAR_identifier"/>
+        <xs:element ref="QSAR_General_information"/>
+        <xs:element ref="QSAR_Endpoint"/>
+        <xs:element ref="QSAR_Algorithm"/>
+        <xs:element maxOccurs="unbounded" ref="QSAR_Applicability_domain"/>
+        <xs:element ref="QSAR_Robustness"/>
+        <xs:element maxOccurs="unbounded" ref="QSAR_Predictivity"/>
+        <xs:element ref="QSAR_Interpretation"/>
+        <xs:element ref="QSAR_Miscelaneous"/>
+        <xs:element ref="QMRF_Summary"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- Chapter 1 -->
+  <xs:element name="QSAR_identifier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="QSAR_title"/>
+        <xs:element ref="QSAR_models"/>
+        <xs:element ref="QSAR_software"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="QSAR identifier">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="QSAR identifier"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QSAR_title">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="1.1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1.1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="QSAR identifier (title)">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="QSAR identifier (title)"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QSAR_models">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="1.2">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1.2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Other related models">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Other related models"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QSAR_software">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="software_ref"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="1.3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1.3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Software coding the model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Software coding the model"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Reference to Software_catalog -->
+  <!-- Chapter 2 -->
+  <xs:element name="QSAR_General_information">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="qmrf_date"/>
+        <xs:element ref="qmrf_authors"/>
+        <xs:element ref="qmrf_date_revision"/>
+        <xs:element ref="qmrf_revision"/>
+        <xs:element ref="model_authors"/>
+        <xs:element ref="model_date"/>
+        <xs:element ref="references"/>
+        <xs:element ref="info_availability"/>
+        <xs:element ref="related_models"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="2">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="General information">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="General information"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 2.1 Date of QMRF -->
+  <xs:element name="qmrf_date">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="2.1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2.1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Date of QMRF">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Date of QMRF"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 2.2. QMRF authors -->
+  <xs:element name="qmrf_authors">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="author_ref"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="2.2">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2.2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="QMRF author(s) and contact details">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="QMRF author(s) and contact details"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 2.3 Date of QMRF update -->
+  <xs:element name="qmrf_date_revision">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="2.3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2.3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Date of QMRF update(s)">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Date of QMRF update(s)"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 2.4 QMRF update(s) -->
+  <xs:element name="qmrf_revision">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="2.4">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2.4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="QMRF update(s)">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="QMRF update(s)"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Model developers -->
+  <xs:element name="model_authors">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="author_ref"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="2.5">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2.5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Model developer(s) and contact details">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Model developer(s) and contact details"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Date of model development -->
+  <xs:element name="model_date">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="2.6">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2.6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Date of model development and/or publication">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Date of model development and/or publication"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 2.7	Reference(s) to main scientific papers and/or software package -->
+  <xs:element name="references">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="publication_ref"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="2.7">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2.7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Reference(s) to main scientific papers and/or software package">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Reference(s) to main scientific papers and/or software package"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 2.8	Availability of information about the model -->
+  <xs:element name="info_availability">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="2.8">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2.8"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Availability of information about the model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Availability of information about the model"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 2.9	Availability of another QMRF for exactly the same model -->
+  <xs:element name="related_models">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="2.9">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2.9"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Availability of another QMRF for exactly the same model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Availability of another QMRF for exactly the same model"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Chapter 3 -->
+  <xs:element name="QSAR_Endpoint">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="model_species"/>
+        <xs:element ref="model_endpoint"/>
+        <xs:element ref="endpoint_comments"/>
+        <xs:element ref="endpoint_units"/>
+        <xs:element ref="endpoint_variable"/>
+        <xs:element ref="endpoint_protocol"/>
+        <xs:element ref="endpoint_data_quality"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Defining the endpoint - OECD Principle 1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Defining the endpoint - OECD Principle 1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Link to species catalog -->
+  <xs:element name="model_species">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="3.1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="3.1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Species">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Species"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Link to endpoint catalog -->
+  <xs:element name="model_endpoint">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="endpoint_ref"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="3.2">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="3.2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Endpoint">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Endpoint"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- endpoints units -->
+  <xs:element name="endpoint_comments">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="3.3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="3.3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Comment on endpoint">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Comment on endpoint"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- endpoints units -->
+  <xs:element name="endpoint_units">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="3.4">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="3.4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Endpoint units">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Endpoint units"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- dependent variable -->
+  <xs:element name="endpoint_variable">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="3.5">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="3.5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Dependent variable">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Dependent variable"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Experimental protocol -->
+  <xs:element name="endpoint_protocol">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="3.6">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="3.6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Experimental protocol">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Experimental protocol"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Endpoint data quality -->
+  <xs:element name="endpoint_data_quality">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="3.7">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="3.7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Endpoint data quality and variability">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Endpoint data quality and variability"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Chapter 4 -->
+  <xs:element name="QSAR_Algorithm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="algorithm_type"/>
+        <xs:element ref="algorithm_explicit"/>
+        <xs:element ref="algorithms_descriptors"/>
+        <xs:element ref="descriptors_selection"/>
+        <xs:element ref="descriptors_generation"/>
+        <xs:element ref="descriptors_generation_software"/>
+        <xs:element ref="descriptors_chemicals_ratio"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="4">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Defining the algorithm - OECD Principle 2">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Defining the algorithm - OECD Principle 2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 4.1 Types of model -->
+  <xs:element name="algorithm_type">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="4.1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="4.1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Type of model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Type of model"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 4.2 Explicit algorithm -->
+  <xs:element name="algorithm_explicit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="algorithm_ref"/>
+        <xs:element ref="equation"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="4.2">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="4.2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Explicit algorithm">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Explicit algorithm"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="equation" type="xs:string"/>
+  <!--
+    4.3 Comments on algorithm - removed in 1.2
+    <!ELEMENT algorithm_comments (#PCDATA)>
+    <!ATTLIST algorithm_comments chapter CDATA  #FIXED "4.3" name CDATA #FIXED "Comments on algorithm" help CDATA "" >
+  -->
+  <!-- 4.3 Descriptors in model -->
+  <xs:element name="algorithms_descriptors">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="descriptor_ref"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="4.3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="4.3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Descriptors in the model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Descriptors in the model"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 4.4 Descriptor selection -->
+  <xs:element name="descriptors_selection">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="4.4">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="4.4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Descriptor selection">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Descriptor selection"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 4.5 Descriptor generator -->
+  <xs:element name="descriptors_generation">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="4.5">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="4.5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Algorithm and descriptor generation">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Algorithm and descriptor generation"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--  4.6	Software name and version for descriptor generation  todo - ref to Software catalog -->
+  <xs:element name="descriptors_generation_software">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="software_ref"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="4.6">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="4.6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Software name and version for descriptor generation">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Software name and version for descriptor generation"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+      <xs:attribute name="options"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 4.7	Descriptors/Chemicals ratio -->
+  <xs:element name="descriptors_chemicals_ratio">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="4.7">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="4.7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Chemicals/Descriptors ratio">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Chemicals/Descriptors ratio"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Chapter 5 -->
+  <xs:element name="QSAR_Applicability_domain">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="app_domain_description"/>
+        <xs:element ref="app_domain_method"/>
+        <xs:element ref="app_domain_software"/>
+        <xs:element ref="applicability_limits"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="5">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Defining the applicability domain - OECD Principle 3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Defining the applicability domain - OECD Principle 3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 5.1	Description of the applicability domain of the model -->
+  <xs:element name="app_domain_description">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="5.1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="5.1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Description of the applicability domain of the model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Description of the applicability domain of the model"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 5.2	Description of the applicability domain of the model -->
+  <xs:element name="app_domain_method">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="5.2">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="5.2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Method used to assess the applicability domain">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Method used to assess the applicability domain"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 5.3	Software name and version for applicability domain assessment -->
+  <xs:element name="app_domain_software">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="software_ref"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="5.3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="5.3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Software name and version for applicability domain assessment">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Software name and version for applicability domain assessment"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 5.4	Description of the applicability domain of the model -->
+  <xs:element name="applicability_limits">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="5.4">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="5.4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Limits of applicability">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Limits of applicability"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Chapter 6 -->
+  <xs:element name="QSAR_Robustness">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="training_set_availability"/>
+        <xs:element ref="training_set_data"/>
+        <xs:element ref="training_set_descriptors"/>
+        <xs:element ref="dependent_var_availability"/>
+        <xs:element ref="other_info"/>
+        <xs:element ref="preprocessing"/>
+        <xs:element ref="goodness_of_fit"/>
+        <xs:element ref="loo"/>
+        <xs:element ref="lmo"/>
+        <xs:element ref="yscrambling"/>
+        <xs:element ref="bootstrap"/>
+        <xs:element ref="other_statistics"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="6">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Internal validation - OECD Principle 4">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Internal validation - OECD Principle 4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 6.1	Availability of the training set -->
+  <xs:element name="training_set_availability">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="6.1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6.1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="answer" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Availability of the training set">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Availability of the training set"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 6.2	Available information for the training set -->
+  <xs:element name="training_set_data">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="6.2">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6.2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Available information for the training set">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Available information for the training set"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+      <xs:attribute name="chemname" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="cas" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="smiles" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="inchi" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="mol" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="formula" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- 6.3	Data for each descriptor variable for the training set -->
+  <xs:element name="training_set_descriptors">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="6.3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6.3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Data for each descriptor variable for the training set">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Data for each descriptor variable for the training set"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="answer" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="All"/>
+            <xs:enumeration value="Some"/>
+            <xs:enumeration value="No"/>
+            <xs:enumeration value="Unknown"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 6.4	Data for the dependent variable for the training set -->
+  <xs:element name="dependent_var_availability">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="6.4">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6.4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Data for the dependent variable for the training set">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Data for the dependent variable for the training set"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="answer" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="All"/>
+            <xs:enumeration value="Some"/>
+            <xs:enumeration value="No"/>
+            <xs:enumeration value="Unknown"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 6.5	Other information about the training set -->
+  <xs:element name="other_info">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="6.5">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6.5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Other information about the training set">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Other information about the training set"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 6.6	Pre-processing of data before modelling -->
+  <xs:element name="preprocessing">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="6.6">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6.6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Pre-processing of data before modelling">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Pre-processing of data before modelling"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 6.7	Statistics for goodness-of-fit -->
+  <xs:element name="goodness_of_fit">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="6.7">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6.7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Statistics for goodness-of-fit">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Statistics for goodness-of-fit"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 6.8	Robustness - Statistics obtained by leave-one-out cross-validation -->
+  <xs:element name="loo">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="6.8">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6.8"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Robustness - Statistics obtained by leave-one-out cross-validation">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Robustness - Statistics obtained by leave-one-out cross-validation"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 6.9	Robustness - Statistics obtained by leave-many-out cross-validation -->
+  <xs:element name="lmo">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="6.9">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6.9"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Robustness - Statistics obtained by leave-many-out cross-validation">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Robustness - Statistics obtained by leave-many-out cross-validation"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 6.10	Robustness - Statistics obtained by Y-scrambling -->
+  <xs:element name="yscrambling">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="6.10">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6.10"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Robustness - Statistics obtained by Y-scrambling">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Robustness - Statistics obtained by Y-scrambling"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 6.11	Robustness - Statistics obtained by bootstrap -->
+  <xs:element name="bootstrap">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="6.11">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6.11"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Robustness - Statistics obtained by bootstrap">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Robustness - Statistics obtained by bootstrap"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 6.12	Robustness - Statistics obtained by other methods -->
+  <xs:element name="other_statistics">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="6.12">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6.12"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Robustness - Statistics obtained by other methods">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Robustness - Statistics obtained by other methods"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Chapter 7 -->
+  <xs:element name="QSAR_Predictivity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="validation_set_availability"/>
+        <xs:element ref="validation_set_data"/>
+        <xs:element ref="validation_set_descriptors"/>
+        <xs:element ref="validation_dependent_var_availability"/>
+        <xs:element ref="validation_other_info"/>
+        <xs:element ref="experimental_design"/>
+        <xs:element ref="validation_predictivity"/>
+        <xs:element ref="validation_assessment"/>
+        <xs:element ref="validation_comments"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="7">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="External validation - OECD Principle 4">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="External validation - OECD Principle 4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 7.1	Availability of the external validation set -->
+  <xs:element name="validation_set_availability">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="7.1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="7.1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="answer" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Availability of the external validation set">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Availability of the external validation set"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 7.2	Available information for the external validation set -->
+  <xs:element name="validation_set_data">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="7.2">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="7.2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Available information for the external validation set">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Available information for the external validation set"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+      <xs:attribute name="chemname" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="cas" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="smiles" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="inchi" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="mol" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="formula" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- 7.3	Data for each descriptor variable for the external validation set -->
+  <xs:element name="validation_set_descriptors">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="7.3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="7.3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Data for each descriptor variable for the external validation set">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Data for each descriptor variable for the external validation set"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="answer" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="All"/>
+            <xs:enumeration value="Some"/>
+            <xs:enumeration value="No"/>
+            <xs:enumeration value="Unknown"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 7.4	Data for the dependent variable for the external validation set -->
+  <xs:element name="validation_dependent_var_availability">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="7.4">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="7.4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Data for the dependent variable for the external validation set">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Data for the dependent variable for the external validation set"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="answer" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="All"/>
+            <xs:enumeration value="Some"/>
+            <xs:enumeration value="No"/>
+            <xs:enumeration value="Unknown"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--  7.5	Other information about the external validation set -->
+  <xs:element name="validation_other_info">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="7.5">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="7.5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Other information about the external validation set">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Other information about the external validation set"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--  7.6	Experimental design for data splitting -->
+  <xs:element name="experimental_design">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="7.6">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="7.6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Experimental design of test set">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Experimental design of test set"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--  7.7	Predictivity - Statistics obtained by external validation -->
+  <xs:element name="validation_predictivity">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="7.7">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="7.7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Predictivity - Statistics obtained by external validation">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Predictivity - Statistics obtained by external validation"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--  7.8	Predictivity - Assessment of the external validation set -->
+  <xs:element name="validation_assessment">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="7.8">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="7.8"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Predictivity - Assessment of the external validation set">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Predictivity - Assessment of the external validation set"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--  7.9	Comments on the external validation of the model -->
+  <xs:element name="validation_comments">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="7.9">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="7.9"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Comments on the external validation of the model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Comments on the external validation of the model"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Chapter 8 -->
+  <xs:element name="QSAR_Interpretation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="mechanistic_basis"/>
+        <xs:element ref="mechanistic_basis_comments"/>
+        <xs:element ref="mechanistic_basis_info"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="8">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="8"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Providing a mechanistic interpretation - OECD Principle 5">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Providing a mechanistic interpretation - OECD Principle 5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--  8.1	Mechanistic basis of the model: -->
+  <xs:element name="mechanistic_basis">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="8.1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="8.1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Mechanistic basis of the model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Mechanistic basis of the model"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--  8.2	A priori or a posteriori mechanistic interpretation -->
+  <xs:element name="mechanistic_basis_comments">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="8.2">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="8.2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="A priori or a posteriori mechanistic interpretation">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="A priori or a posteriori mechanistic interpretation"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--  8.3	Other information about the mechanistic interpretation -->
+  <xs:element name="mechanistic_basis_info">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="8.3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="8.3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Other information about the mechanistic interpretation">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Other information about the mechanistic interpretation"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Chapter 9 -->
+  <xs:element name="QSAR_Miscelaneous">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="comments"/>
+        <xs:element ref="bibliography"/>
+        <xs:element ref="attachments"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="9">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="9"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Miscellaneous information">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Miscellaneous information"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--  9.1	Comments -->
+  <xs:element name="comments">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="9.1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="9.1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Comments">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Comments"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--  9.2	Bibliography -->
+  <xs:element name="bibliography">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="publication_ref"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="9.2">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="9.2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Bibliography">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Bibliography"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--  9.3	Supporting information -->
+  <!--  added embedded attribute, expecting CDATA in Base64 v1.2 -->
+  <xs:element name="attachments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="attachment_training_data"/>
+        <xs:element ref="attachment_validation_data"/>
+        <xs:element ref="attachment_documents"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="9.3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="9.3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Supporting information">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Supporting information"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attachment_training_data">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="molecules"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attachment_validation_data">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="molecules"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attachment_documents">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="document"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="molecules">
+    <xs:complexType>
+      <xs:attribute name="embedded">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="url" use="required"/>
+      <xs:attribute name="filetype"/>
+      <xs:attribute name="description"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- http://www.ch.ic.ac.uk/chemime/Chemical MIME types -->
+  <xs:element name="document">
+    <xs:complexType>
+      <xs:attribute name="embedded">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="url" use="required"/>
+      <xs:attribute name="filetype"/>
+      <xs:attribute name="description"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- 10. Summary (ECB Inventory) -->
+  <xs:element name="QMRF_Summary">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="QMRF_number"/>
+        <xs:element ref="date_publication"/>
+        <xs:element ref="keywords"/>
+        <xs:element ref="summary_comments"/>
+      </xs:sequence>
+      <xs:attribute name="chapter" default="10">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="10"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Summary (JRC QSAR Model Database)">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Summary (JRC QSAR Model Database)"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--  10.1	QMRF number -->
+  <xs:element name="QMRF_number">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="10.1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="10.1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="QMRF number">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="QMRF number"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="date_publication">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="10.2">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="10.2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Publication date">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Publication date"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="keywords">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="10.3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="10.3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Keywords">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Keywords"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="summary_comments">
+    <xs:complexType mixed="true">
+      <xs:attribute name="chapter" default="10.4">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="10.4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="name" default="Comments">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Comments"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="help" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Misc repositories -->
+  <xs:element name="Catalogs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="software_catalog"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="algorithms_catalog"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="descriptors_catalog"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="endpoints_catalog"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="publications_catalog"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="authors_catalog"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--  Software catalog -->
+  <xs:element name="software_catalog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="software"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="software">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="url"/>
+      <xs:attribute name="number" use="required"/>
+      <xs:attribute name="description"/>
+      <xs:attribute name="version"/>
+      <xs:attribute name="contact"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="software_ref">
+    <xs:complexType>
+      <xs:attribute name="idref" use="required" type="xs:IDREF"/>
+      <xs:attribute name="catalog" default="software_catalog">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="software_catalog"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!--  Algorithms catalog -->
+  <xs:element name="algorithms_catalog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="algorithm"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="algorithm">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+      <xs:attribute name="definition" use="required"/>
+      <xs:attribute name="description" use="required"/>
+      <xs:attribute name="publication_ref" type="xs:IDREF"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="algorithm_ref">
+    <xs:complexType>
+      <xs:attribute name="idref" use="required" type="xs:IDREF"/>
+      <xs:attribute name="catalog" default="algorithms_catalog">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="algorithms_catalog"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!--  Descriptors catalog -->
+  <xs:element name="descriptors_catalog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="descriptor"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="descriptor">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="units" use="required"/>
+      <xs:attribute name="description" use="required"/>
+      <xs:attribute name="publication_ref" type="xs:IDREF"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="descriptor_ref">
+    <xs:complexType>
+      <xs:attribute name="idref" use="required" type="xs:IDREF"/>
+      <xs:attribute name="catalog" default="descriptors_catalog">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="descriptors_catalog"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!--  Endpoints catalog -->
+  <!-- subgroup attribute added version 0.9 -->
+  <xs:element name="endpoints_catalog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="endpoint"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="endpoint">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="subgroup"/>
+      <xs:attribute name="group"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="endpoint_ref">
+    <xs:complexType>
+      <xs:attribute name="idref" use="required" type="xs:IDREF"/>
+      <xs:attribute name="catalog" default="endpoints_catalog">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="endpoints_catalog"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!--  Authors catalog. Number attribute should be unique, will be used in QMRF number generation -->
+  <xs:element name="authors_catalog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="author"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="author">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="affiliation"/>
+      <xs:attribute name="contact"/>
+      <xs:attribute name="url"/>
+      <xs:attribute name="email"/>
+      <xs:attribute name="number" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="author_ref">
+    <xs:complexType>
+      <xs:attribute name="idref" use="required" type="xs:IDREF"/>
+      <xs:attribute name="catalog" default="authors_catalog">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="authors_catalog"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!--  Publications catalog -->
+  <xs:element name="publications_catalog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="publication"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="publication">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+      <xs:attribute name="title" use="required"/>
+      <xs:attribute name="url"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="publication_ref">
+    <xs:complexType>
+      <xs:attribute name="idref" use="required" type="xs:IDREF"/>
+      <xs:attribute name="number" default=""/>
+      <xs:attribute name="catalog" default="publications_catalog">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="publications_catalog"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
