@@ -8,7 +8,7 @@ module OpenTox
   #Provides a ruby OpenTox class to prepare an initial version of a QMRF report. 
   #The XML output is in QMRF version 1.3 and can be finalized with the QMRF editor 2.0 (https://sourceforge.net/projects/qmrf/)  
   #@example Report
-  #  require ""
+  #  require "qmrf-report"
   #  report = OpenTox::QMRFReport.new
   #  report.change_qmrf_tag "QSAR_title", "My QSAR Title"
   #  report.change_catalog :publications_catalog, :publications_catalog_1, {:title => "MyName M (2016) My Publication Title, QSAR News, 10, 14-22", :url => "http://myqsarnewsmag.dom"}

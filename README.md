@@ -10,7 +10,7 @@ The XML output is in QMRF version 1.3 and can be finalized with the QMRF editor 
 ## Usage
 create a new report, add some content and show output:
 ```ruby 
-require ""
+require "qmrf-report"
 
 # create a new report
 report = OpenTox::QMRFReport.new
