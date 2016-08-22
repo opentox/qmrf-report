@@ -106,7 +106,7 @@ module OpenTox
 
     # get an attribute from a catalog entry
     # @param [String] catalog Name of the catalog
-    # @param [String] id entry id in the catalog 
+    # @param [String] id entry id in the catalog
     # @param [String] key returns value of a key in a catalog node
     # @return [String, false] returns value of a key in a catalog node or false if catalog entry do not exists.
     def get_catalog_value catalog, id, key
@@ -131,7 +131,8 @@ module OpenTox
       xsd = Nokogiri::XML::Schema(File.read(SCHEMA_FILE))
       out = ""
       xsd.validate(@report).each do |error|
-        out << error.message unless error.message == "Element 'algorithm', attribute 'publication_ref': '' is not a valid value of the atomic type 'xs:IDREF'." || error.message == "Element 'descriptor', attribute 'publication_ref': '' is not a valid value of the atomic type 'xs:IDREF'."
+        out << error.message unless error.message == "Element 'algorithm', attribute 'publication_ref': '' is not a valid value of the atomic type 'xs:IDREF'." || error.message == "Element 'descriptor', attribute 'publication_ref': '' is not a valid value of the atomic type 'xs:IDREF'." 
+        # @todo ignore case sensitivity error: error.message The value 'NO' is not an.Element of the set {'Yes', 'No'}.
       end
       return out
     end
