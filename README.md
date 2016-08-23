@@ -60,4 +60,16 @@ puts report.pretty_json
 
 ```
 
+Installation
+------------
+
+  gem install qsar-report
+
+Documentation
+-------------
+* [RubyDoc.info Code documentation](http://www.rubydoc.info/gems/qsar-report)
+
+Copyright
+---------
+Copyright (c) 2016 Christoph Helma, Micha Rautenberg, Denis Gebele. See LICENSE for details.
 
