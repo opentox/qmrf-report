@@ -1,3 +1,6 @@
+v0.0.2
+* add QPRF reporting
+* rename gem qmrf-report to qsar-report
 v0.0.1
 * initial version
 

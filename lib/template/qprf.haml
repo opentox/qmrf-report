@@ -1,0 +1,25 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+  %body
+    %h1= self["singleCalculations"]["Title"]
+    %p
+      = self["singleCalculations"]["Disclaimer and Instructions"]
+      %ul
+        %li 
+          Date: #{self["singleCalculations"]["Date"]}
+        %li
+          Version: #{self["singleCalculations"]["Version"]}
+    - self["arrayCalculations"].each do |block|
+      %h2= block[0]
+      - block[1]["values"].each do |val|
+        - if val[0] == "General" && val[1][0] == "Instructions"
+          %p #{val[1][1]}        
+        - else
+          - if val[0].match(/\d\.\d \w\./)
+            %h4
+              #{val[0]} #{val[1][0]}
+          -else 
+            %h3
+              #{val[0]} #{val[1][0]}
+          %p #{val[1][1]}
+        

@@ -1,4 +1,4 @@
 --readme README.md
---title 'QMRF reporting class for opentox'
+--title 'QMRF reporting class for OpenTox'
 --charset utf-8
 yardoc  lib/*.rb - README.md ChangeLog VERSION LICENSE

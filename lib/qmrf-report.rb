@@ -8,7 +8,7 @@ module OpenTox
   #Provides a ruby OpenTox class to prepare an initial version of a QMRF report. 
   #The XML output is in QMRF version 1.3 and can be finalized with the QMRF editor 2.0 (https://sourceforge.net/projects/qmrf/)  
   #@example Report
-  #  require "qmrf-report"
+  #  require "qsar-report"
   #  report = OpenTox::QMRFReport.new
   #  report.change_qmrf_tag "QSAR_title", "My QSAR Title"
   #  report.change_catalog :publications_catalog, :publications_catalog_1, {:title => "MyName M (2016) My Publication Title, QSAR News, 10, 14-22", :url => "http://myqsarnewsmag.dom"}
@@ -42,15 +42,17 @@ module OpenTox
       @report.to_xml
     end
 
-    # Change a value
+    # Get or Set a value
     # e.G.: <QSAR_title chapter="1.1" help="" name="QSAR identifier (title)">Title of My QSAR</QSAR_title>
-    # @param [String] key Name of the node
-    # @param [String] value Value to change
+    # @param [String] key Nodename e.g.: "QSAR_title"
+    # @param [String] value Value to change. If not set the function returns the current value
     # @return [Error]  returns Error message if fails
-    def change_qmrf_tag key, value
+    # @return [String] returns value    
+    def Value key, value=nil
       raise "Can not edit attribute #{key} directly. Edit the catalog with 'report.change_catalog(catalog, key, value)'." if ["QSAR_software","QSAR_Algorithm", ""].include? key
       t = @report.at_css key
-      t.content = value
+      t.content = value unless value.nil?
+      t.content
     end
 
     # Change a catalog
@@ -94,14 +96,6 @@ module OpenTox
       else
         raise "catalog entry with id: #{id} do not exist."      
       end
-    end
-
-    # get value of a QMRF node
-    # @param [String] key Nodename e.g.: "QSAR_title"
-    # @return [String] returns value
-    def get_qmrf_tag key
-      t = @report.at_css key
-      t.content
     end
 
     # get an attribute from a catalog entry
