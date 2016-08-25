@@ -10,7 +10,7 @@ module OpenTox
   #@example Report
   #  require "qsar-report"
   #  report = OpenTox::QMRFReport.new
-  #  report.change_qmrf_tag "QSAR_title", "My QSAR Title"
+  #  report.Value "QSAR_title", "My QSAR Title"
   #  report.change_catalog :publications_catalog, :publications_catalog_1, {:title => "MyName M (2016) My Publication Title, QSAR News, 10, 14-22", :url => "http://myqsarnewsmag.dom"}
   #  report.ref_catalog :bibliography, :publications_catalog, :publications_catalog_1
   #  puts report.to_xml
