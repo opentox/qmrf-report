@@ -10,7 +10,7 @@ module OpenTox
   #@example Report
   #  require "qsar-report"
   #  report = OpenTox::QMRFReport.new
-  #  report.Value "QSAR_title", "My QSAR Title"
+  #  report.value "QSAR_title", "My QSAR Title"
   #  report.change_catalog :publications_catalog, :publications_catalog_1, {:title => "MyName M (2016) My Publication Title, QSAR News, 10, 14-22", :url => "http://myqsarnewsmag.dom"}
   #  report.ref_catalog :bibliography, :publications_catalog, :publications_catalog_1
   #  puts report.to_xml
@@ -48,7 +48,7 @@ module OpenTox
     # @param [String] value Value to change. If not set the function returns the current value
     # @return [Error]  returns Error message if fails
     # @return [String] returns value    
-    def Value key, value=nil
+    def value key, value=nil
       raise "Can not edit attribute #{key} directly. Edit the catalog with 'report.change_catalog(catalog, key, value)'." if ["QSAR_software","QSAR_Algorithm", ""].include? key
       t = @report.at_css key
       t.content = value unless value.nil?

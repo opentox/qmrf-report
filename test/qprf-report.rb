@@ -25,7 +25,7 @@ class QMRFReportTest < MiniTest::Test
     assert_equal report.Title, "QSAR Prediction Reporting Format (QPRF)"
   end
   
-  def test_4_set_Values
+  def test_4_set_values
     report = OpenTox::QPRFReport.new
     report.Title = "My Test Title"
     report.Version = "12"
@@ -36,16 +36,16 @@ class QMRFReportTest < MiniTest::Test
 
   def test_5_get_11
     report = OpenTox::QPRFReport.new
-    report.Value "1.1", "7732-18-5"
-    assert_equal report.Value("1.1"), "7732-18-5"
+    report.value "1.1", "7732-18-5"
+    assert_equal report.value("1.1"), "7732-18-5"
   end
 
-  def test_6_set_more_Values
+  def test_6_set_more_values
     report = OpenTox::QPRFReport.new
     report.Title = "My QPRF Report"
     report.Version = "2.1"
     report.Date = "2016/08/21"
-    report.Value "1.1", "7732-18-5"
+    report.value "1.1", "7732-18-5"
     assert_equal report.pretty_json, File.read(File.join(DATA_DIR,'qprf-t6.json'))
   end
 

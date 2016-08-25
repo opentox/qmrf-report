@@ -18,7 +18,7 @@ require "qsar-report"
 report = OpenTox::QMRFReport.new
 
 # add a title
-report.Value "QSAR_title", "My QSAR Title"
+report.value "QSAR_title", "My QSAR Title"
 
 # add a publication to the publication catalog
 report.change_catalog :publications_catalog, :publications_catalog_1, {:title => "MyName M (2016) My Publication Title, QSAR News, 10, 14-22", :url => "http://myqsarnewsmag.dom"}
@@ -50,7 +50,7 @@ report.Version = "1"
 report.Date = Time.now.strftime("%Y/%m/%d")
 
 # Set the CAS number in chapter 1.1
-report.Value "1.1", "7732-18-5" # set CAS number for H²O
+report.value "1.1", "7732-18-5" # set CAS number for H²O
 
 # print HTML version
 puts report.to_html

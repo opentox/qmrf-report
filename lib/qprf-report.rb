@@ -14,7 +14,7 @@ module OpenTox
   #  report.Title = "My QPRF Report"
   #  report.Version = "1"
   #  report.Date = Time.now.strftime("%Y/%m/%d")
-  #  report.Value "1.1", "7732-18-5" # set CAS number for H²O
+  #  report.value "1.1", "7732-18-5" # set CAS number for H²O
   #  puts report.to_html
 
   class QPRFReport
@@ -56,12 +56,12 @@ module OpenTox
     # Set or Get a value in the QPRF report
     #@example for CAS Number
     #  report = OpenTox::QPRFReport.new
-    #  report.Value "1.1", "7732-18-5"
+    #  report.value "1.1", "7732-18-5"
     #
     # @param [String] chapter Name of the chapter - e.g.:  "1.1", "1.2", "1.3", "1.4", "1.5 General", "1.5 a.", "1.5 b.", "1.5 c.", "1.5 d.", "2.1" ...
     # @param [String] value Value to set. If not set the function returns the current value
     # @return [String]  returns Value
-    def Value chapter, value=nil
+    def value chapter, value=nil
       case chapter
       when /^1\.\d*/
         block = "1. Substance"

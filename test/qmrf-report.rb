@@ -19,17 +19,17 @@ class QMRFReportTest < MiniTest::Test
 
   def test_3_write_some_values
     report = OpenTox::QMRFReport.new
-    report.Value "QSAR_title", "My QSAR Title"
-    report.Value "QSAR_models", "My QSAR Model"
-    assert_equal report.Value("QSAR_title"), "My QSAR Title"
-    assert_equal report.Value("QSAR_models"), "My QSAR Model"
-    refute_equal report.Value("QSAR_title"), "lazar"
+    report.value "QSAR_title", "My QSAR Title"
+    report.value "QSAR_models", "My QSAR Model"
+    assert_equal report.value("QSAR_title"), "My QSAR Title"
+    assert_equal report.value("QSAR_models"), "My QSAR Model"
+    refute_equal report.value("QSAR_title"), "lazar"
   end
 
   def test_4_write_check
     report = OpenTox::QMRFReport.new
-    report.Value "QSAR_title", "My QSAR Title"
-    report.Value "QSAR_models", "My QSAR Model"
+    report.value "QSAR_title", "My QSAR Title"
+    report.value "QSAR_models", "My QSAR Model"
     assert_equal report.to_xml, File.read(File.join(File.join(DATA_DIR, "qmrf_t4.xml")))
   end
 
@@ -52,8 +52,8 @@ class QMRFReportTest < MiniTest::Test
   
   def test_7_write_alot
     report = OpenTox::QMRFReport.new
-    report.Value "QSAR_title", "My QSAR Title"
-    report.Value "QSAR_models", "My QSAR Model"
+    report.value "QSAR_title", "My QSAR Title"
+    report.value "QSAR_models", "My QSAR Model"
     report.change_catalog :software_catalog, :firstsoftware, {:name => "lazar", :contact => "in-silico toxicology gmbh", :url => "https://lazar.in-silico.ch", :description => "lazar toxicity predictions"}
     report.change_catalog :publications_catalog, :publications_catalog_1, {:title => "MyName M (2016) My Publication Title, QSAR News, 10, 14-22", :url => "http://myqsarnewsmag.dom"}
     report.change_catalog :publications_catalog, :publications_catalog_2, {:title => "MyName M (2016) My Second Publication Title, Hornblower, 101ff.", :url => "http://hornblower.dom"}
