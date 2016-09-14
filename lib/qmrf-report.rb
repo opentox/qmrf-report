@@ -80,9 +80,9 @@ module OpenTox
     # @return [Error]  returns Error message if fails
     def change_catalog catalog, id, valuehash
       catalog_exists? catalog
-      if @report.at_css("#{catalog}").at("//*[@id='#{id}']")
+      if @report.at_css("#{catalog}").at("[@id='#{id}']")
         valuehash.each do |key, value|
-          @report.at_css("#{catalog}").at("//*[@id='#{id}']")["#{key}"]= value
+          @report.at_css("#{catalog}").at("[@id='#{id}']")["#{key}"]= value
         end
       else
         cat = @report.at_css("#{catalog}")
@@ -106,7 +106,7 @@ module OpenTox
       catalog_exists? catalog
       if @report.at_css("#{catalog}").at("//*[@id='#{id}']")
         chap = @report.at_css("#{chapter}")
-        if chap.at("//*[@idref='#{id}']").nil?
+        if chap.at("[@idref='#{id}']").nil?
           newentry = Nokogiri::XML::Node.new("#{catalog.to_s.gsub(/s?_catalog/,'_ref')}", self.report)
           newentry["idref"] = id
           chap << newentry
@@ -123,8 +123,8 @@ module OpenTox
     # @return [String, false] returns value of a key in a catalog node or false if catalog entry do not exists.
     def get_catalog_value catalog, id, key
       catalog_exists? catalog
-      if @report.at_css("#{catalog}").at("//*[@id='#{id}']")
-        @report.at_css("#{catalog}").at("//*[@id='#{id}']")["#{key}"]
+      if @report.at_css("#{catalog}").at("[@id='#{id}']")
+        @report.at_css("#{catalog}").at("[@id='#{id}']")["#{key}"]
       else
         return false
       end
