@@ -20,6 +20,9 @@ report = OpenTox::QMRFReport.new
 # add a title
 report.value "QSAR_title", "My QSAR Title"
 
+# change 6.2 'Available information for the training set' set inchi and smiles to Yes
+report.change_attributes "training_set_data", {:inchi => "Yes", :smiles => "Yes"}
+
 # add a publication to the publication catalog
 report.change_catalog :publications_catalog, :publications_catalog_1, {:title => "MyName M (2016) My Publication Title, QSAR News, 10, 14-22", :url => "http://myqsarnewsmag.dom"}
 

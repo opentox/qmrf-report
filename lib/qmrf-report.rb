@@ -11,6 +11,7 @@ module OpenTox
   #  require "qsar-report"
   #  report = OpenTox::QMRFReport.new
   #  report.value "QSAR_title", "My QSAR Title"
+  #  report.change_attributes "training_set_data", {:inchi => "Yes", :smiles => "Yes"}
   #  report.change_catalog :publications_catalog, :publications_catalog_1, {:title => "MyName M (2016) My Publication Title, QSAR News, 10, 14-22", :url => "http://myqsarnewsmag.dom"}
   #  report.ref_catalog :bibliography, :publications_catalog, :publications_catalog_1
   #  puts report.to_xml
@@ -20,6 +21,8 @@ module OpenTox
     SCHEMA_FILE   = File.join(File.dirname(__FILE__),"template/qmrf.xsd")
     # QMRF XML Template file
     TEMPLATE_FILE = File.join(File.dirname(__FILE__),"template/qmrf.xml")
+    # QMRF XML tags with attributes to edit
+    ATTRIBUTE_TAGS = ["training_set_availability", "training_set_data", "training_set_descriptors", "dependent_var_availability", "validation_set_availability", "validation_set_data", "validation_set_descriptors", "validation_dependent_var_availability"]
     
     attr_accessor :xml, :report
 
@@ -53,6 +56,21 @@ module OpenTox
       t = @report.at_css key
       t.content = value unless value.nil?
       t.content
+    end
+
+    # Set attributes of an report XML tag
+    # e.G.: <training_set_data cas="Yes" chapter="6.2" chemname="Yes" formula="Yes" help="" inchi="Yes" mol="Yes" name="Available information for the training set" smiles="Yes"/>
+    #@example change_attributes
+    #  report.change_attributes "training_set_data", {:inchi => "Yes", :smiles => "Yes"}
+    # @param [String] key Nodename e.g.: "training_set_data"
+    # @param [Hash] valuehash Key-Value Hash of tag attributes to change.
+    # @return [Error]  returns Error message if fails
+    def change_attributes tagname, valuehash
+      raise "Can not edit the attributes of tag: #{tagname}." unless ATTRIBUTE_TAGS.include? tagname
+      tag = @report.at_css tagname
+      valuehash.each do |key, value|
+        tag.attributes["#{key}"].value = value
+      end
     end
 
     # Change a catalog
