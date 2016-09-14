@@ -3,7 +3,7 @@
 Gem::Specification.new do |s|
   s.name        = "qsar-report"
   s.version     = File.read("./VERSION")
-  s.date        = "2016-08-19"
+  s.date        = "2016-09-14"
   s.authors     = ["Micha Rautenberg"]
   s.email       = ["rautenberg@in-silico.ch"]
   s.homepage    = "http://github.com/opentox/qsar-report"

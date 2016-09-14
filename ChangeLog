@@ -1,3 +1,6 @@
+v0.0.5
+* add change_attributes method to edit QMRF 6.1-6.4 and 7.1-7.4
+* fix catalog referencing code, adjust node search
 v0.0.2
 * add QPRF reporting
 * rename gem qmrf-report to qsar-report
