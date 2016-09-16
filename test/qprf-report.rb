@@ -1,6 +1,6 @@
 require_relative "setup.rb"
 
-class QMRFReportTest < MiniTest::Test
+class QPRFReportTest < MiniTest::Test
 
   def test_0_self
     puts "MiniTest #{self.class} start OK"
