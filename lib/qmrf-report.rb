@@ -21,6 +21,8 @@ module OpenTox
     SCHEMA_FILE   = File.join(File.dirname(__FILE__),"template/qmrf.xsd")
     # QMRF XML Template file
     TEMPLATE_FILE = File.join(File.dirname(__FILE__),"template/qmrf.xml")
+    # QMRF catalogs. Entries of a catalog can be referenced in certain tags.
+    CATALOGS = ["software_catalog", "algorithms_catalog", "descriptors_catalog", "endpoints_catalog", "publications_catalog", "authors_catalog"]
     # QMRF XML tags with attributes to edit
     ATTRIBUTE_TAGS = ["training_set_availability", "training_set_data", "training_set_descriptors", "dependent_var_availability", "validation_set_availability", "validation_set_data", "validation_set_descriptors", "validation_dependent_var_availability"]
     
@@ -46,7 +48,11 @@ module OpenTox
     end
 
     # Get or Set a value
-    # e.G.: <QSAR_title chapter="1.1" help="" name="QSAR identifier (title)">Title of My QSAR</QSAR_title>
+    # e.G.:
+    #@example change the title
+    #  report.value "QSAR_title", "Title of My QSAR"
+    #  #changes the QSAR_title tag to:
+    #  #<QSAR_title chapter="1.1" help="" name="QSAR identifier (title)">Title of My QSAR</QSAR_title>
     # @param [String] key Nodename e.g.: "QSAR_title"
     # @param [String] value Value to change. If not set the function returns the current value
     # @return [Error]  returns Error message if fails
@@ -58,11 +64,13 @@ module OpenTox
       t.content
     end
 
-    # Set attributes of an report XML tag
-    # e.G.: <training_set_data cas="Yes" chapter="6.2" chemname="Yes" formula="Yes" help="" inchi="Yes" mol="Yes" name="Available information for the training set" smiles="Yes"/>
+    # Set attributes of an report XML tag.
+    # Some of the QMRF XML tags have attributes to be edited. This applies to 6.1 to 6.4 and 7.1 to 7.4 see also: {OpenTox::QMRFReport::ATTRIBUTE_TAGS ATTRIBUTE_TAGS}.   
+    # e.G. "Available information for the training set" at 6.2 of the report: 
+    #  <training_set_data cas="Yes" chapter="6.2" chemname="Yes" formula="Yes" help="" inchi="Yes" mol="Yes" name="Available information for the training set" smiles="Yes"/>
     #@example change_attributes
     #  report.change_attributes "training_set_data", {:inchi => "Yes", :smiles => "Yes"}
-    # @param [String] key Nodename e.g.: "training_set_data"
+    # @param [String] tagname Nodename e.g.: "training_set_data"
     # @param [Hash] valuehash Key-Value Hash of tag attributes to change.
     # @return [Error]  returns Error message if fails
     def change_attributes tagname, valuehash
@@ -74,7 +82,7 @@ module OpenTox
     end
 
     # Change a catalog
-    # @param [String] catalog Name of the catalog - One of "software_catalog", "algorithms_catalog", "descriptors_catalog", "endpoints_catalog", "publications_catalog", "authors_catalog" in QMRF v1.3
+    # @param [String] catalog Name of the catalog - One of {OpenTox::QMRFReport::CATALOGS CATALOGS}.
     # @param [String] id Single entry node in the catalog e.G.: "<software contact='mycontact@mydomain.dom' description="My QSAR Software " id="software_catalog_2" name="MySoftware" number="" url="https://mydomain.dom"/>
     # @param [Hash] valuehash Key-Value Hash with attributes for a single catalog node
     # @return [Error]  returns Error message if fails
@@ -100,7 +108,7 @@ module OpenTox
     #@example ref_catalog
     #  report.ref_catalog 'qmrf_authors', 'authors_catalog', 'firstauthor'
     # @param [String] chapter Name of the chapter to add the catalog reference. e.g.: qmrf_authors, model_authors, QSAR_software, ...
-    # @param [String] catalog Name of the catalog 
+    # @param [String] catalog Name of the catalog. One of {OpenTox::QMRFReport::CATALOGS CATALOGS}.
     # @param [String] id entry node in the catalog
     def ref_catalog chapter, catalog, id
       catalog_exists? catalog
@@ -117,7 +125,7 @@ module OpenTox
     end
 
     # get an attribute from a catalog entry
-    # @param [String] catalog Name of the catalog
+    # @param [String] catalog Name of the catalog. One of {OpenTox::QMRFReport::CATALOGS CATALOGS}.
     # @param [String] id entry id in the catalog
     # @param [String] key returns value of a key in a catalog node
     # @return [String, false] returns value of a key in a catalog node or false if catalog entry do not exists.
@@ -132,9 +140,9 @@ module OpenTox
 
     # Check if a catalog exists in this QMRF version
     # @param [String] catalog Catalog
-    # @return [Error, true]  returns true or Error if a catalog do not exists
+    # @return [Error, true]  returns true or Error if a catalog do not exists. See also {OpenTox::QMRFReport::CATALOGS CATALOGS}.
     def catalog_exists? catalog
-      raise "Unknown catalog: #{catalog}" unless ["software_catalog", "algorithms_catalog", "descriptors_catalog", "endpoints_catalog", "publications_catalog", "authors_catalog"].include? catalog.to_s
+      raise "Unknown catalog: #{catalog}" unless CATALOGS.include? catalog.to_s
       true
     end
 

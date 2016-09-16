@@ -77,7 +77,6 @@ class QMRFReportTest < MiniTest::Test
     assert_equal report.to_xml, File.read(File.join(File.join(DATA_DIR, "qmrf_t9y.xml")))
     report.change_attributes "training_set_data", {:inchi => "No", :smiles => "No"}    
     assert_equal report.to_xml, File.read(File.join(File.join(DATA_DIR, "qmrf_t9n.xml")))
-
   end
 
 end

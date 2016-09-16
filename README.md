@@ -1,5 +1,5 @@
 # QSAR-Report
-QMRF and QPRF reporting extension to OpenTox ruby modules and lazar
+QMRF and QPRF reporting extension to OpenTox ruby modules and lazar.
 ## About
 Class for QMRF and QPRF reporting.  
 * QMRF:
@@ -76,4 +76,10 @@ Documentation
 Copyright
 ---------
 Copyright (c) 2016 Christoph Helma, Micha Rautenberg, Denis Gebele. See LICENSE for details.
+
+Lazar QMRF Example
+------------------
+Here is an advanced example of the usage of the gem in lazar code:
+
+{include:file:example/example.rb}
 
