@@ -71,4 +71,13 @@ class QMRFReportTest < MiniTest::Test
     assert_equal report.to_xml, File.read(File.join(File.join(DATA_DIR, "qmrf_t8.xml")))
   end
 
+  def test_9_set_attributes
+    report = OpenTox::QMRFReport.new
+    report.change_attributes "training_set_data", {:inchi => "Yes", :smiles => "Yes"}
+    assert_equal report.to_xml, File.read(File.join(File.join(DATA_DIR, "qmrf_t9y.xml")))
+    report.change_attributes "training_set_data", {:inchi => "No", :smiles => "No"}    
+    assert_equal report.to_xml, File.read(File.join(File.join(DATA_DIR, "qmrf_t9n.xml")))
+
+  end
+
 end

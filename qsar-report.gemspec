@@ -6,12 +6,12 @@ Gem::Specification.new do |s|
   s.date        = "2016-09-14"
   s.authors     = ["Micha Rautenberg"]
   s.email       = ["rautenberg@in-silico.ch"]
-  s.homepage    = "http://github.com/opentox/qsar-report"
+  s.homepage    = "https://github.com/opentox/qsar-report"
   s.summary     = %q{qsar-report}
   s.description = %q{QMRF and QPRF reporting for OpenTox ruby module and Lazar Toxicology Predictions}
   s.license     = 'GPL-3.0'
-
-  #s.rubyforge_project = "qsar-report"
+  s.metadata = { "issue_tracker" => "https://github.com/opentox/qsar-report/issues" }
+   
 
   s.files       = `git ls-files`.split("\n")
   s.required_ruby_version = '>= 2.0.0'
