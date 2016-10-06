@@ -1,6 +1,7 @@
 # QSAR-Report
 QMRF and QPRF reporting extension to OpenTox ruby modules and lazar.   
-The QSAR-report gem was developed to extend the lazar and nano-lazar toxicity prediction application with QMRF and QPRF reporting features. The library gem is independent from lazar or nano-lazar and can also be used in any other ruby code.
+The QSAR-report gem was developed to extend the lazar and nano-lazar toxicity prediction application with QMRF and QPRF reporting features. 
+The library gem is independent from lazar or nano-lazar and can also be used in any other ruby code.
 
 ## About
 Classes for QMRF and QPRF reporting.
@@ -12,6 +13,7 @@ Classes for QMRF and QPRF reporting.
   Provides a ruby OpenTox class to prepare an initial version of a QPRF (version 1.1) report in JSON or HTML.
 
 ## Usage
+
 ### QMRF
 create a new QMRF report, add some content and show output:
 ```ruby
