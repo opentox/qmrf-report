@@ -6,10 +6,10 @@ The library gem is independent from lazar or nano-lazar and can also be used in 
 ## About
 Classes for QMRF and QPRF reporting.
 
-* OpenTox::QMRFReport:
+* **OpenTox::QMRFReport**:
   Provides a ruby OpenTox class to prepare an initial version of a QMRF report.
   The XML output is in QMRF version 1.3 and can be finalized with the QMRF editor 2.0 (https://sourceforge.net/projects/qmrf/)
-* OpenTox::QPRFReport:
+* **OpenTox::QPRFReport**:
   Provides a ruby OpenTox class to prepare an initial version of a QPRF (version 1.1) report in JSON or HTML.
 
 ## Usage
@@ -71,7 +71,7 @@ puts report.pretty_json
 Installation
 ------------
 
-  gem install qsar-report
+    gem install qsar-report
 
 Documentation
 -------------
