@@ -10,7 +10,7 @@ prediction_model = Model::Prediction.find_by :model_id => params[:id]
 validation_template = File.join(File.dirname(__FILE__),"../views/model_details.haml") #detailed validation results from lazar-rest
 
 
-# Start filling the QMRF report 
+# Start filling the QMRF report
 
 # QSAR identifier (title) 1.1
 report.value "QSAR_title", "Model for #{prediction_model.species} #{prediction_model.endpoint}"
@@ -22,9 +22,15 @@ report.ref_catalog :QSAR_software, :software_catalog, :firstsoftware
 # Date of QMRF 2.1
 report.value "qmrf_date", "#{Time.now.strftime('%d %B %Y')}"
 
-# QMRF author(s) and contact details 2.1
+# QMRF author(s) and contact details 2.2
 report.change_catalog :authors_catalog, :firstauthor, {:name => "Christoph Helma", :affiliation => "in silico toxicology gmbh", :contact => "Contact Address", :email => "Contact Email", :number => "1", :url => "Web Page"}
 report.ref_catalog :qmrf_authors, :authors_catalog, :firstauthor
+
+# Date of QMRF update(s) 2.3
+report.value "qmrf_date_revision", ""
+
+# QMRF update(s) 2.4
+report.value "qmrf_revision", ""
 
 # Model developer(s) and contact details 2.5
 report.change_catalog :authors_catalog, :modelauthor, {:name => "Christoph Helma", :affiliation => "in silico toxicology gmbh", :contact => "Contact Address", :email => "Contact Email", :number => "1", :url => "Web Page"}
@@ -42,9 +48,9 @@ report.change_catalog :publications_catalog, :publications_catalog_2, {:title =>
 report.ref_catalog :references, :publications_catalog, :publications_catalog_2
 
 # Species 3.1
-report.value "model_species", prediction_model.species 
+report.value "model_species", prediction_model.species
 
-# Endpoint 3.2 
+# Endpoint 3.2
 report.change_catalog :endpoints_catalog, :endpoints_catalog_1, {:name => prediction_model.endpoint, :group => ""}
 report.ref_catalog :model_endpoint, :endpoints_catalog, :endpoints_catalog_1
 
@@ -75,23 +81,23 @@ report.ref_catalog :descriptors_generation_software, :software_catalog, :softwar
 # Chemicals/Descriptors ratio 4.7
 report.value "descriptors_chemicals_ratio", "not applicable (classification based on activities of neighbors, descriptors are used for similarity calculation)"
 
-# Some QMRF fields (tag contents) can have formatted HTML contents. 
-# These contents have to have a complete HTML document structure with basic surrounding tags like <html><body>. 
-# see Example below   
+# Some QMRF fields (tag contents) can have formatted HTML contents.
+# These contents have to have a complete HTML document structure with basic surrounding tags like <html><body>.
+# see Example below
 
 # Description of the applicability domain of the model 5.1
 report.value "app_domain_description", "<html><head></head><body>
     <p>
-      The applicability domain (AD) of the training set is characterized by 
-      the confidence index of a prediction (high confidence index: close to 
-      the applicability domain of the training set/reliable prediction, low 
-      confidence: far from the applicability domain of the 
-      trainingset/unreliable prediction). The confidence index considers (i) 
-      the similarity and number of neighbors and (ii) contradictory examples 
+      The applicability domain (AD) of the training set is characterized by
+      the confidence index of a prediction (high confidence index: close to
+      the applicability domain of the training set/reliable prediction, low
+      confidence: far from the applicability domain of the
+      trainingset/unreliable prediction). The confidence index considers (i)
+      the similarity and number of neighbors and (ii) contradictory examples
       within the neighbors. A formal definition can be found in Helma 2006.
     </p>
     <p>
-      The reliability of predictions decreases gradually with increasing 
+      The reliability of predictions decreases gradually with increasing
       distance from the applicability domain (i.e. decreasing confidence index)
     </p>
   </body>
@@ -100,7 +106,7 @@ report.value "app_domain_description", "<html><head></head><body>
 # Method used to assess the applicability domain 5.2
 report.value "app_domain_method", "see Helma 2006 and Maunz 2008"
 
-# Software name and version for applicability domain assessment 5.3  
+# Software name and version for applicability domain assessment 5.3
 report.change_catalog :software_catalog, :software_catalog_3, {:name => "lazar, submitted version: #{lazar_commit}", :description => "integrated into main lazar algorithm", :number => "3", :url => "https://lazar.in-silico.ch", :contact => "Contact Email"}
 report.ref_catalog :app_domain_software, :software_catalog, :software_catalog_3
 
@@ -135,10 +141,10 @@ end
 # Mechanistic basis of the model 8.1
 report.value "mechanistic_basis","<html><head></head><body>
   <p>
-    Compounds with similar structures (neighbors) are assumed to have 
-    similar activities as the query compound. For the determination of 
-    activity specific similarities only statistically relevant subtructures 
-    (paths) are used. For this reason there is a priori no bias towards 
+    Compounds with similar structures (neighbors) are assumed to have
+    similar activities as the query compound. For the determination of
+    activity specific similarities only statistically relevant subtructures
+    (paths) are used. For this reason there is a priori no bias towards
     specific mechanistic hypothesis.
   </p>
 </body>
@@ -148,22 +154,22 @@ report.value "mechanistic_basis","<html><head></head><body>
 report.value "mechanistic_basis_comments","a posteriori for individual predictions"
 
 # Other information about the mechanistic interpretation 8.3
-report.value "mechanistic_basis_info","<html><head></head><body><p>Hypothesis about biochemical mechanisms can be derived from individual 
+report.value "mechanistic_basis_info","<html><head></head><body><p>Hypothesis about biochemical mechanisms can be derived from individual
     predictions by inspecting neighbors and relevant fragments.</p>
-    <p>Neighbors are compounds that are similar in respect to a certain 
-    endpoint and it is likely that compounds with high similarity act by 
-    similar mechanisms as the query compound. Links at the webinterface 
-    prove an easy access to additional experimental data and literature 
+    <p>Neighbors are compounds that are similar in respect to a certain
+    endpoint and it is likely that compounds with high similarity act by
+    similar mechanisms as the query compound. Links at the webinterface
+    prove an easy access to additional experimental data and literature
     citations for the neighbors and the query structure.</p>
-    <p>Activating and deactivating parts of the query compound are highlighted 
-    in red and green on the webinterface. Fragments that are unknown (or too 
-    infrequent for statistical evaluation are marked in yellow and 
-    additional statistical information about the individual fragments can be 
-    retrieved. Please note that lazar predictions are based on neighbors and 
-    not on fragments. Fragments and their statistical significance are used 
+    <p>Activating and deactivating parts of the query compound are highlighted
+    in red and green on the webinterface. Fragments that are unknown (or too
+    infrequent for statistical evaluation are marked in yellow and
+    additional statistical information about the individual fragments can be
+    retrieved. Please note that lazar predictions are based on neighbors and
+    not on fragments. Fragments and their statistical significance are used
     for the calculation of activity specific similarities.</p>"
 
-# Reference all publications to the bibliography 
+# Reference all publications to the bibliography
 # Bibliography 9.2
 report.ref_catalog :bibliography, :publications_catalog, :publications_catalog_1
 report.ref_catalog :bibliography, :publications_catalog, :publications_catalog_2
